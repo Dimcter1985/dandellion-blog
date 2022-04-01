@@ -27,8 +27,16 @@ export default Home;
 export async function getStaticProps() {
   // query() is empty on purpose!
 
-  // Получение данных из призмик по типу
-  const res = await client.query(Prismic.Predicates.at('document.type', 'article'),)
+
+
+  const res = await client.query(
+    Prismic.Predicates.at('document.type', 'article'),// Получение данных из призмик по типу
+    {
+      orderings: `[document.date desc]`,// сортировка по дате, сначала новые
+      pageSize: 1,//1 статья на странице
+      page: 0// загружается сначала 2я страница
+    }
+    )
 
   const posts = res.results.map((p) => {
     return p.data
