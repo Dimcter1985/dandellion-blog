@@ -6,7 +6,7 @@ const Post = ({ date, image, title }) => {
       <img alt={alt} src={`${url}`} />
       <div className="description">{alt}</div>
       <div className="text">
-        <h2>{title}</h2>
+        <h2>{title} lkjlkj</h2>
         <h3>{date.substring(0, 10)}</h3>
       </div>
     </div>

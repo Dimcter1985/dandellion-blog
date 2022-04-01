@@ -1,8 +1,9 @@
-
 import { client } from '../utils/prismicPosts';
+import Prismic from 'prismic-javascript'
 import Post from '../components/Post';
 
 const Home = ({posts}) => {
+
   return (
     <>
       <h1>Dandelion Blog</h1>
@@ -25,8 +26,9 @@ export default Home;
 // at the bottom of your component file
 export async function getStaticProps() {
   // query() is empty on purpose!
-  // https://prismic.io/docs/rest-api/query-the-api/query-all-documents
-  const res = await client.query('')
+
+  // Получение данных из призмик по типу
+  const res = await client.query(Prismic.Predicates.at('document.type', 'article'),)
 
   const posts = res.results.map((p) => {
     return p.data
